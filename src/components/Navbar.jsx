@@ -15,16 +15,17 @@ const Navbar = () => {
         <Link href={'/signUp'}><li>SignUp</li></Link>
     </>
     return (
-        <nav className='flex justify-between px-10 border py-4 bg-white'>
-            <ul className='flex items-center gap-8 font-medium text--[#0c0b0b]'>
+        <nav className='flex justify-between px-6  py-3 bg-[#ffffff3f] absolute top-4 left-1/2 -translate-x-1/2 w-11/12 overflow-hidden '>
+            <ul className='flex items-center gap-8 font-medium text-white'>
                 {links}
             </ul>
 
-            <h2 className='text-2xl font-medium text-[#15a1b5]'>
+            <div className='absolute left-1/2 top-1/2 -translate-y-1/2 bg-[#ffffff] w-40 h-15 rounded-full blur-lg'></div>
+            <h2 className='text-3xl font-medium text-[#15a1b5] z-50'>
                 Voyentra
             </h2>
 
-            <ul className='flex items-center gap-8 font-medium'>
+            <ul className='flex items-center gap-8 font-medium text-white'>
                 {authLinks}
             </ul>
         </nav>

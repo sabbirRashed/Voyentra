@@ -1,26 +1,29 @@
-import { Separator } from "@heroui/react";
+import { Button, Separator } from "@heroui/react";
+import { FaArrowRight } from "react-icons/fa";
+import { MdOutlineArrowForward } from "react-icons/md";
 
 const Banner = () => {
     return (
-        <div className="bg-[url('/assets/banner.png')] bg-cover bg-no-repeat text-white  flex justify-between flex-col items-center  gap-5 h-150">
-            <div className="p-10 text-center flex justify-center flex-col items-center gap-3.5 flex-1">
-                <h1 className="text-7xl">
-                    Discover Your <br /> Next Adventure
+        <div className="bg-[url('/assets/banner.png')] bg-cover bg-center bg-no-repeat min-h-[80vh] text-white  flex justify-between flex-col items-center  gap-5 h-150">
+            <div className="p-10 text-center flex flex-col justify-center  items-center gap-3.5 flex-1">
+                <h1 className="text-7xl max-w-150">
+                    Discover Your Next Adventure
                 </h1>
 
-                <p className="text-2xl">
+                <p className="text-2xl ">
                     Explore breathtaking destinations and create unforgettable memories
                     with our curated travel experiences.
                 </p>
 
                 <div className="flex gap-5">
-                    <button className="uppercase bg-cyan-500 px-5 py-3 cursor-pointer">
-                        Explore Now
-                    </button>
+                    <Button className="uppercase tracking-widest bg-cyan-500 px-5 py-6 rounded-none space-x-3">
+                        <span>Explore Now</span> <MdOutlineArrowForward />
+                    </Button>
 
-                    <button className="uppercase px-5 py-3 bg-white/50 cursor-pointer">
+                    <Button className="uppercase tracking-widest px-5 py-6 bg-white/50 rounded-none">
                         View Destination
-                    </button>
+                    </Button>
+                    
                 </div>
             </div>
 
