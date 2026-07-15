@@ -6,7 +6,7 @@ import { GoArrowUpRight } from 'react-icons/go';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 
 const DestinationCard = ({ destinations }) => {
-    const { destinationName, country, category, price, duration, departureDate, imageUrl, description } = destinations;
+    const {_id, destinationName, country, category, price, duration, departureDate, imageUrl, description } = destinations;
     console.log(destinationName, country);
     return (
         <div className='space-y-1'>
@@ -16,6 +16,7 @@ const DestinationCard = ({ destinations }) => {
                     alt='image'
                     width={400}
                     height={400}
+                    loading='eager'
                     className='w-full h-60'></Image>
                 <p className='flex items-center gap-1 mt-1 text-[#6C696D] font-medium'><HiOutlineLocationMarker className='' />{country}</p>
             </div>
@@ -27,10 +28,12 @@ const DestinationCard = ({ destinations }) => {
                         <FaRegCalendarMinus />
                         {duration}
                     </h3>
-                    <Button variant='gost' className={'text-lg text-[#15a1b5] tracking-wide px-0'}>
-                        <span className='border-b-2 border-b-gray-200'>BOOK NOW</span>
-                        <GoArrowUpRight className='w-6 h-6' />
-                    </Button>
+                    <Link href={`/destinations/${_id}`}>
+                        <Button variant='gost' className={'text-lg text-[#15a1b5] tracking-wide px-0'}>
+                            <span className='border-b-2 border-b-gray-200'>BOOK NOW</span>
+                            <GoArrowUpRight className='w-6 h-6' />
+                        </Button>
+                    </Link>
                 </div>
                 <h2 className='text-2xl font-playFair font-medium'>${price}<span className='text-base text-[#6C696D]'>/Person</span></h2>
             </div>

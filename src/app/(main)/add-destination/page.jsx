@@ -1,10 +1,11 @@
 'use client'
 import { postDestination } from '@/lib/data';
 import { FieldError, Input, Label, TextField, Select, ListBox, TextArea, Button, Card } from '@heroui/react';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 const AddDestinationPage = () => {
-
+   const router = useRouter()
     const onSubmit = async(e) => {
         e.preventDefault();
 
@@ -13,7 +14,8 @@ const AddDestinationPage = () => {
         const result = await postDestination(destinationData);
         
         if(result.acknowledged){
-            e.target.reset();
+            e.currentTarget.reset()
+            router.refresh()
         }
     }
     return (

@@ -24,6 +24,11 @@ const nextConfig = {
         hostname: 'media.istockphoto.com',
         pathname: "/**"
       },
+      {
+        protocol: 'https',
+        hostname: 'www.the-ski-guru.com',
+        pathname: "/**"
+      },
     ]
   }
 };
