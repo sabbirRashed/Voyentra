@@ -21,7 +21,7 @@ const Navbar = () => {
         <Link href={'/signUp'}><li>SignUp</li></Link>
     </>
     return (
-        <nav className='flex justify-between px-6  py-3 bg-[#ffffff3f] absolute top-4 left-1/2 -translate-x-1/2 w-11/12 overflow-hidden '>
+        <nav className='flex justify-between px-6  py-3 bg-[#ffffff3f] absolute top-4 left-1/2 -translate-x-1/2 w-11/12 max-w-[1600px] overflow-hidden '>
             <ul className= {`flex items-center gap-8 font-medium ${pathName === '/'? "text-white": "text-[#0c0b0b]"}`}>
                 {links}
             </ul>
