@@ -10,9 +10,9 @@ const Navbar = () => {
 
     const links = <>
         <Link href={'/'}><li>Home</li></Link>
-        <Link href={'/add-destination'}><li>Destinations</li></Link>
+        <Link href={'/destinations'}><li>Destinations</li></Link>
         <Link href={'/bookings'}><li>My Bookings</li></Link>
-        <Link href={'/admin'}><li>Admin</li></Link>
+        <Link href={'/add-destination'}><li>Admin</li></Link>
     </>
 
     const authLinks = <>

@@ -1,5 +1,5 @@
 'use client'
-import { postDestination } from '@/lib/actions';
+import { postDestination } from '@/lib/data';
 import { FieldError, Input, Label, TextField, Select, ListBox, TextArea, Button, Card } from '@heroui/react';
 import React from 'react';
 
