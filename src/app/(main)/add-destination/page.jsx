@@ -1,15 +1,20 @@
 'use client'
+import { postDestination } from '@/lib/actions';
 import { FieldError, Input, Label, TextField, Select, ListBox, TextArea, Button, Card } from '@heroui/react';
 import React from 'react';
 
 const AddDestinationPage = () => {
 
-    const onSubmit = (e) => {
+    const onSubmit = async(e) => {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
         const destinationData = Object.fromEntries(formData.entries());
-        console.log(destinationData);
+        const result = await postDestination(destinationData);
+        
+        if(result.acknowledged){
+            e.target.reset();
+        }
     }
     return (
         <div className='w-11/12 max-w-360 mx-auto py-30'>
