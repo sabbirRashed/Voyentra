@@ -1,14 +1,24 @@
+'use client'
 import { FieldError, Input, Label, TextField, Select, ListBox, TextArea, Button, Card } from '@heroui/react';
 import React from 'react';
 
-const page = () => {
+const AddDestinationPage = () => {
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+        const destinationData = Object.fromEntries(formData.entries());
+        console.log(destinationData);
+    }
     return (
         <div className='w-11/12 max-w-360 mx-auto py-30'>
 
             <h2 className='text-4xl  text-[#0c0b0b]'>Add New Travel Package</h2>
 
-            <Card className='border border-gray-200 shadow-sm rounded-sm max-w-4xl mx-auto mt-12'>
+            <Card className='border border-gray-200 shadow-xl rounded-sm max-w-4xl mx-auto mt-12'>
                 <form
+                    onSubmit={onSubmit}
                     className="p-10 space-y-8 "
                 >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -145,4 +155,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default AddDestinationPage;
