@@ -5,7 +5,7 @@ import { MdOutlineArrowForward } from "react-icons/md";
 const Banner = () => {
     return (
         <div className="bg-[url('/assets/banner.png')] bg-cover bg-center bg-no-repeat min-h-[80vh] text-white  flex justify-between flex-col items-center  gap-5 h-150">
-            <div className="p-10 text-center flex flex-col justify-center  items-center gap-3.5 flex-1">
+            <div className="p-10 text-center flex flex-col justify-center  items-center gap-6 flex-1">
                 <h1 className="text-7xl max-w-150">
                     Discover Your Next Adventure
                 </h1>
@@ -28,35 +28,35 @@ const Banner = () => {
             </div>
 
             <div className=" bg-white/30 flex justify-between gap-5 w-full items-center">
-                <div className="px-3">
-                    <h3 className="text-sm">Location</h3>
+                <div className="px-3 py-2">
+                    <h3 className="text-sm font-medium tracking-wider">Location</h3>
                     <p className="text-xs">Address, City or Zip</p>
                 </div>
 
                 <Separator variant="tertiary" orientation="vertical" />
 
                 <div>
-                    <h3 className="text-sm">Date/Duration</h3>
+                    <h3 className="text-sm font-medium tracking-wider">Date/Duration</h3>
                     <p className="text-xs">Anytime/3 Days</p>
                 </div>
 
                 <Separator variant="tertiary" orientation="vertical" />
 
                 <div>
-                    <h3 className="text-sm">Budget</h3>
+                    <h3 className="text-sm font-medium tracking-wider">Budget</h3>
                     <p className="text-xs">$0-$3000</p>
                 </div>
 
                 <Separator variant="tertiary" orientation="vertical" />
 
                 <div>
-                    <h3 className="text-sm">People</h3>
+                    <h3 className="text-sm font-medium tracking-wider">People</h3>
                     <p className="text-xs">5-10</p>
                 </div>
 
 
 
-                <div className="bg-cyan-500 py-2 px-4">
+                <div className="bg-cyan-500 h-full px-10 flex justify-center items-center cursor-pointer tracking-wider">
                     <h3>Search</h3>
                 </div>
             </div>

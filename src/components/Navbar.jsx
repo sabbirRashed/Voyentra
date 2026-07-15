@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
+import { LuUser } from 'react-icons/lu';
+import { PiUserLight } from 'react-icons/pi';
 
 const Navbar = () => {
     const links = <>
@@ -10,7 +12,7 @@ const Navbar = () => {
     </>
 
     const authLinks = <>
-        <Link href={'/profile'}><li>Profile</li></Link>
+        <Link href={'/profile'}><li className='flex items-center gap-1'><PiUserLight /> Profile</li></Link>
         <Link href={'/login'}><li>Login</li></Link>
         <Link href={'/signUp'}><li>SignUp</li></Link>
     </>
@@ -20,7 +22,7 @@ const Navbar = () => {
                 {links}
             </ul>
 
-            <div className='absolute left-1/2 top-1/2 -translate-y-1/2 bg-[#ffffff] w-40 h-15 rounded-full blur-lg'></div>
+            <div className='absolute left-1/2 top-1/2 -translate-y-1/2 bg-[#ffffff] w-40 h-15 rounded-full blur-lg rotate-x-45'></div>
             <h2 className='text-3xl font-medium text-[#15a1b5] z-50'>
                 Voyentra
             </h2>
