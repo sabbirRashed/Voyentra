@@ -1,12 +1,16 @@
+'use client'
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 import { LuUser } from 'react-icons/lu';
 import { PiUserLight } from 'react-icons/pi';
 
 const Navbar = () => {
+    const pathName = usePathname();
+
     const links = <>
         <Link href={'/'}><li>Home</li></Link>
-        <Link href={'/destinations'}><li>Destinations</li></Link>
+        <Link href={'/add-destination'}><li>Destinations</li></Link>
         <Link href={'/bookings'}><li>My Bookings</li></Link>
         <Link href={'/admin'}><li>Admin</li></Link>
     </>
@@ -18,7 +22,7 @@ const Navbar = () => {
     </>
     return (
         <nav className='flex justify-between px-6  py-3 bg-[#ffffff3f] absolute top-4 left-1/2 -translate-x-1/2 w-11/12 overflow-hidden '>
-            <ul className='flex items-center gap-8 font-medium text-white'>
+            <ul className= {`flex items-center gap-8 font-medium ${pathName === '/'? "text-white": "text-[#0c0b0b]"}`}>
                 {links}
             </ul>
 
@@ -27,7 +31,7 @@ const Navbar = () => {
                 Voyentra
             </h2>
 
-            <ul className='flex items-center gap-8 font-medium text-white'>
+            <ul className= {`flex items-center gap-8 font-medium ${pathName === '/'? "text-white": "text-[#0c0b0b]"}`}>
                 {authLinks}
             </ul>
         </nav>
