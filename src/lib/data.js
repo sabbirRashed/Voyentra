@@ -1,4 +1,11 @@
 
+export const getDestinations = async()=>{
+    const res = await fetch('http://localhost:5000/destinations');
+    const data = await res.json();
+    return data;
+}
+
+
 
 export const postDestination = async(destinationData)=>{
     const res = await fetch('http://localhost:5000/destination', {
@@ -14,8 +21,3 @@ export const postDestination = async(destinationData)=>{
     return data;
 }
 
-export const getDestinations = async()=>{
-    const res = await fetch('http://localhost:5000/destinations');
-    const data = await res.json();
-    return data;
-}

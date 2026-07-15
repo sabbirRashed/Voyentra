@@ -3,4 +3,13 @@
 
 body{
     background-color: white;
+    font-family: var(--font-geist-sans);
+}
+
+.font-playFair{
+    font-family: var(--font-playfair-display);
+}
+
+.font-geist{
+    font-family: var(--font-geist-sans);
 }

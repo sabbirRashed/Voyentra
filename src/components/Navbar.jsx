@@ -27,7 +27,7 @@ const Navbar = () => {
             </ul>
 
             <div className='absolute left-1/2 top-1/2 -translate-y-1/2 bg-[#ffffff] w-40 h-15 rounded-full blur-lg rotate-x-45'></div>
-            <h2 className='text-3xl font-medium text-[#15a1b5] z-50'>
+            <h2 className='font-playFair text-3xl font-bold text-[#15a1b5] z-50 tracking-wide'>
                 Voyentra
             </h2>
 

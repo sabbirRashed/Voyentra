@@ -1,10 +1,11 @@
+import { Button } from '@heroui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaRegCalendarMinus } from 'react-icons/fa';
 import { GoArrowUpRight } from 'react-icons/go';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 
-const DestinationCard = ({destinations}) => {
+const DestinationCard = ({ destinations }) => {
     const { destinationName, country, category, price, duration, departureDate, imageUrl, description } = destinations;
     console.log(destinationName, country);
     return (
@@ -21,17 +22,17 @@ const DestinationCard = ({destinations}) => {
 
             <div className='flex justify-between'>
                 <div>
-                    <h2 className='text-2xl font-medium'>{destinationName}</h2>
+                    <h2 className='text-2xl font-playFair font-medium'>{destinationName}</h2>
                     <h3 className='font-medium text-[#6C696D] mt-2 mb-4 flex items-center gap-1'>
                         <FaRegCalendarMinus />
                         {duration}
                     </h3>
-                    <Link href={'/booking'} className='text-[#15a1b5] tracking-wide text-xl border-b-2 border-b-gray-200 flex items-end gap-2'>
-                        BOOK NOW
-                        <GoArrowUpRight size={24} />
-                    </Link>
+                    <Button variant='gost' className={'text-lg text-[#15a1b5] tracking-wide px-0'}>
+                        <span className='border-b-2 border-b-gray-200'>BOOK NOW</span>
+                        <GoArrowUpRight className='w-6 h-6' />
+                    </Button>
                 </div>
-                <h2 className='text-2xl font-medium'>${price}<span className='text-base text-[#6C696D]'>/Person</span></h2>
+                <h2 className='text-2xl font-playFair font-medium'>${price}<span className='text-base text-[#6C696D]'>/Person</span></h2>
             </div>
         </div>
     );
