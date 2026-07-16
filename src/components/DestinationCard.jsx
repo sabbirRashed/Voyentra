@@ -18,7 +18,7 @@ const DestinationCard = ({ destinations }) => {
                     height={400}
                     loading='eager'
                     className='w-full h-60'></Image>
-                <p className='flex items-center gap-1 mt-1 text-[#6C696D] font-medium'><HiOutlineLocationMarker className='' />{country}</p>
+                <p className='flex items-center gap-1 mt-1 text-[#6C696D] font-medium'><HiOutlineLocationMarker />{country}</p>
             </div>
 
             <div className='flex justify-between'>
