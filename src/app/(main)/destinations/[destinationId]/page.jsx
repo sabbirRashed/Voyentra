@@ -1,3 +1,4 @@
+import DeleteAlert from '@/components/DeleteAlert';
 import EditModal from '@/components/EditModal';
 import { getDestinationById } from '@/lib/data';
 import { Button, Separator } from '@heroui/react';
@@ -6,7 +7,7 @@ import React from 'react';
 import { FaRegCalendarMinus } from 'react-icons/fa';
 import { FaArrowLeft, } from 'react-icons/fa6';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
-import { RiDeleteBin6Line } from 'react-icons/ri';
+
 
 const DestinationDetails = async ({ params }) => {
     const { destinationId } = await params;
@@ -27,10 +28,8 @@ const DestinationDetails = async ({ params }) => {
 
                 <div className='flex justify-between items-center space-x-4 '>
                     <EditModal destination={destination}/>
-                    <Button variant='outline' className={'rounded-none  border border-red-500 text-red-500 space-x-1'}>
-                        <RiDeleteBin6Line />
-                        Cancel
-                    </Button>
+                   
+                    <DeleteAlert destination={destination} />
                 </div>
             </div>
 
