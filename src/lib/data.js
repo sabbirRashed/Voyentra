@@ -11,6 +11,18 @@ export const getDestinationById = async(id)=>{
     return data;
 }
 
+export const updateDestinaiton = async(id, modifiedData)=>{
+    const res = await fetch(`http://localhost:5000/destination/${id}`, {
+        method: 'PATCH',
+        headers:{
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify(modifiedData)
+    });
+    const data = await res.json();
+    return data;
+}
+
 export const postDestination = async(destinationData)=>{
     const res = await fetch('http://localhost:5000/destination', {
         method: 'POST',

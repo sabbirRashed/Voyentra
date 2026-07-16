@@ -1,9 +1,13 @@
 'use client'
+import { updateDestinaiton } from "@/lib/data";
 import { Button, FieldError, Input, Label, ListBox, Modal, Surface, TextArea, TextField, Select } from "@heroui/react";
+import { useRouter } from "next/navigation";
 import { FaRegEdit } from "react-icons/fa";
 
 
 const EditModal = ({ destination }) => {
+
+    const router = useRouter();
 
     const { _id,
         destinationName,
@@ -18,15 +22,14 @@ const EditModal = ({ destination }) => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData(e.currentTarget);
+        const form = e.currentTarget;
+        const formData = new FormData(form);
         const updatedData = Object.fromEntries(formData.entries());
-        // const result = await postDestination(destinationData);
-        console.log(updatedData);
+        const result = await updateDestinaiton(_id, updatedData);
 
-        // if (result.acknowledged) {
-        //     e.currentTarget.reset()
-        //     router.refresh()
-        // }
+        if (result.modifiedCount > 0) {
+            router.refresh()
+        }
     }
 
 
@@ -176,6 +179,7 @@ const EditModal = ({ destination }) => {
                                             <Button
                                                 type="submit"
                                                 variant="outline"
+                                                slot="close"
                                                 // isLoading={isPending}
                                                 className=" rounded-none bg-cyan-500 text-white py-5 px-8"
                                             >
