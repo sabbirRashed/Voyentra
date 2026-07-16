@@ -26,7 +26,7 @@ const DestinationDetails = async ({ params }) => {
                 </Button>
 
                 <div className='flex justify-between items-center space-x-4 '>
-                    <EditModal/>
+                    <EditModal destination={destination}/>
                     <Button variant='outline' className={'rounded-none  border border-red-500 text-red-500 space-x-1'}>
                         <RiDeleteBin6Line />
                         Cancel

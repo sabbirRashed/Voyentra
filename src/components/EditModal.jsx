@@ -3,20 +3,30 @@ import { Button, FieldError, Input, Label, ListBox, Modal, Surface, TextArea, Te
 import { FaRegEdit } from "react-icons/fa";
 
 
-const EditModal = () => {
+const EditModal = ({ destination }) => {
 
+    const { _id,
+        destinationName,
+        country, category,
+        price, duration,
+        departureDate,
+        imageUrl,
+        description
+
+    } = destination;
 
     const onSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
-        const destinationData = Object.fromEntries(formData.entries());
+        const updatedData = Object.fromEntries(formData.entries());
         // const result = await postDestination(destinationData);
+        console.log(updatedData);
 
-        if (result.acknowledged) {
-            e.currentTarget.reset()
-            router.refresh()
-        }
+        // if (result.acknowledged) {
+        //     e.currentTarget.reset()
+        //     router.refresh()
+        // }
     }
 
 
@@ -46,7 +56,7 @@ const EditModal = () => {
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                             {/* Destination Name */}
                                             <div className="md:col-span-2">
-                                                <TextField name="destinationName" isRequired>
+                                                <TextField defaultValue={destinationName} name="destinationName" isRequired>
                                                     <Label>Destination Name</Label>
                                                     <Input placeholder="Bali Paradise" className="rounded-none bg-gray-100 py-4 mt-1" />
                                                     <FieldError />
@@ -54,7 +64,7 @@ const EditModal = () => {
                                             </div>
 
                                             {/* Country */}
-                                            <TextField name="country" isRequired>
+                                            <TextField defaultValue={country} name="country" isRequired>
                                                 <Label>Country</Label>
                                                 <Input placeholder="Indonesia" className="rounded-none bg-gray-100 py-4 mt-1" />
                                                 <FieldError />
@@ -63,6 +73,7 @@ const EditModal = () => {
                                             {/* Category - Updated Select Component */}
                                             <div>
                                                 <Select
+                                                defaultValue={category}
                                                     name="category"
                                                     isRequired
                                                     className="w-full"
@@ -105,7 +116,7 @@ const EditModal = () => {
                                             </div>
 
                                             {/* Price */}
-                                            <TextField name="price" type="number" isRequired>
+                                            <TextField defaultValue={price} name="price" type="number" isRequired>
                                                 <Label>Price (USD)</Label>
                                                 <Input
                                                     type="number"
@@ -116,7 +127,7 @@ const EditModal = () => {
                                             </TextField>
 
                                             {/* Duration */}
-                                            <TextField name="duration" isRequired>
+                                            <TextField defaultValue={duration} name="duration" isRequired>
                                                 <Label>Duration</Label>
                                                 <Input
                                                     placeholder="7 Days / 6 Nights"
@@ -127,7 +138,7 @@ const EditModal = () => {
 
                                             {/* Departure Date */}
                                             <div className="md:col-span-2">
-                                                <TextField name="departureDate" type="date" isRequired>
+                                                <TextField defaultValue={departureDate} name="departureDate" type="date" isRequired>
                                                     <Label>Departure Date</Label>
                                                     <Input type="date" className="rounded-none bg-gray-100 py-4 mt-1" />
                                                     <FieldError />
@@ -136,7 +147,7 @@ const EditModal = () => {
 
                                             {/* Image URL - Removed preview */}
                                             <div className="md:col-span-2">
-                                                <TextField name="imageUrl" isRequired>
+                                                <TextField defaultValue={imageUrl} name="imageUrl" isRequired>
                                                     <Label>Image URL</Label>
                                                     <Input
                                                         type="url"
@@ -149,7 +160,7 @@ const EditModal = () => {
 
                                             {/* Description */}
                                             <div className="md:col-span-2">
-                                                <TextField name="description" isRequired>
+                                                <TextField defaultValue={description} name="description" isRequired>
                                                     <Label>Description</Label>
                                                     <TextArea
                                                         placeholder="Describe the travel experience..."
@@ -161,16 +172,18 @@ const EditModal = () => {
                                         </div>
 
                                         {/* Buttons */}
+                                        <Modal.Footer>
+                                            <Button
+                                                type="submit"
+                                                variant="outline"
+                                                // isLoading={isPending}
+                                                className=" rounded-none bg-cyan-500 text-white py-5 px-8"
+                                            >
+                                                {/* {isPending ? "Adding Package..." : "Add Travel Package"} */}
+                                                Save
+                                            </Button>
+                                        </Modal.Footer>
 
-                                        <Button
-                                            type="submit"
-                                            variant="outline"
-                                            // isLoading={isPending}
-                                            className=" rounded-none w-full bg-cyan-500 text-white p-6"
-                                        >
-                                            {/* {isPending ? "Adding Package..." : "Add Travel Package"} */}
-                                            Add Travel Package
-                                        </Button>
                                     </form>
                                 </Surface>
                             </Modal.Body>
