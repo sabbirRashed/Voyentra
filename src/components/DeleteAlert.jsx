@@ -1,4 +1,5 @@
 "use client"
+import { deleteDestination } from '@/lib/data';
 import { AlertDialog, Button } from '@heroui/react';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -12,12 +13,12 @@ const DeleteAlert = ({ destination }) => {
 
     const handleBtn = async (id) => {
 
-        // const result = await deleteDestination(id);
+        const result = await deleteDestination(id);
 
-        // if (result.modifiedCount > 0) {
-        //     router.push('/destinations');
-        //     router.refresh();
-        // }
+        if (result.deletedCount > 0) {
+            router.push('/destinations');
+            router.refresh();
+        }
     }
 
 

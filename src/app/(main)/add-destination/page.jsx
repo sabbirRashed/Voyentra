@@ -9,12 +9,13 @@ const AddDestinationPage = () => {
     const onSubmit = async(e) => {
         e.preventDefault();
 
-        const formData = new FormData(e.currentTarget);
+        const form = e.currentTarget;
+        const formData = new FormData(form);
         const destinationData = Object.fromEntries(formData.entries());
         const result = await postDestination(destinationData);
         
         if(result.acknowledged){
-            e.currentTarget.reset()
+            form.reset()
             router.refresh()
         }
     }

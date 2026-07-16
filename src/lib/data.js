@@ -31,8 +31,17 @@ export const postDestination = async(destinationData)=>{
         },
         body: JSON.stringify(destinationData)
     });
+    const data = await res.json();
+    return data;
+}
 
-
+export const deleteDestination = async(id)=>{
+    const res = await fetch(`http://localhost:5000/destination/${id}`, {
+        method: "DELETE",
+        headers:{
+            "content-type": "application/json"
+        }
+    })
     const data = await res.json();
     return data;
 }
