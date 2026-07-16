@@ -1,6 +1,8 @@
 "use client"
 import { authClient } from "@/lib/auth-client";
 import { Button, Card, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 
 const SignUpPage = () => {
 
@@ -16,11 +18,21 @@ const SignUpPage = () => {
         const { data, error } = await authClient.signUp.email({
             name,
             email,
-            image:imageUrl,
+            image: imageUrl,
             password
         })
 
-        console.log('data:',data, "error:", error)
+        if (data) {
+            toast.success(`SignUp successfull!`, {
+                autoClose: 2000,
+            })
+            redirect('/')
+        }
+        else if (error) {
+            toast.error(`${error.message}`, {
+                autoClose: 2000,
+            })
+        }
 
 
     };
