@@ -1,12 +1,27 @@
 "use client"
+import { authClient } from "@/lib/auth-client";
 import { Button, Card, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 
 const SignUpPage = () => {
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
+
         const formData = new FormData(e.currentTarget);
-        const data = {};
+        const newUser = Object.fromEntries(formData.entries());
+        console.log('new user:', newUser,);
+        const { name, email, imageUrl, password } = newUser;
+        console.log(imageUrl);
+
+        const { data, error } = await authClient.signUp.email({
+            name,
+            email,
+            image:imageUrl,
+            password
+        })
+
+        console.log('data:',data, "error:", error)
+
 
     };
 
@@ -17,7 +32,9 @@ const SignUpPage = () => {
             <p className='text-center text-base  text-[#6C696D] mt-2'>Start your adventure with Voyentra</p>
             <Card className="border border-gray-200 max-w-120 mx-auto rounded-none p-10 mt-6">
 
-                <Form className="flex w-full flex-col gap-4" >
+                <Form
+                    onSubmit={onSubmit}
+                    className="flex w-full flex-col gap-4" >
                     <TextField
                         isRequired
                         name="name"
