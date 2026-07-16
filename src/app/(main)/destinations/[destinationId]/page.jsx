@@ -1,8 +1,9 @@
+import EditModal from '@/components/EditModal';
 import { getDestinationById } from '@/lib/data';
 import { Button, Separator } from '@heroui/react';
 import Image from 'next/image';
 import React from 'react';
-import { FaRegCalendarMinus, FaRegEdit } from 'react-icons/fa';
+import { FaRegCalendarMinus } from 'react-icons/fa';
 import { FaArrowLeft, } from 'react-icons/fa6';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
@@ -25,10 +26,7 @@ const DestinationDetails = async ({ params }) => {
                 </Button>
 
                 <div className='flex justify-between items-center space-x-4 '>
-                    <Button variant='outline' className={'rounded-none  space-x-1'}>
-                        <FaRegEdit />
-                        Edit
-                    </Button>
+                    <EditModal/>
                     <Button variant='outline' className={'rounded-none  border border-red-500 text-red-500 space-x-1'}>
                         <RiDeleteBin6Line />
                         Cancel
