@@ -17,7 +17,6 @@ const Navbar = () => {
     </>
 
     const authLinks = <>
-        <Link href={'/profile'}><li className='flex items-center gap-1'><PiUserLight /> Profile</li></Link>
         <Link href={'/login'}><li>Login</li></Link>
         <Link href={'/signUp'}><li>Sign Up</li></Link>
     </>
@@ -63,16 +62,17 @@ const Navbar = () => {
             {/* auth links */}
             {
                 user ?
-                    <div className='flex justify-end gap-4'>
-
-                        <Button className={'bg-cyan-500 rounded-none'} onClick={() => { handleLogout() }}>LogOut</Button>
+                    <div className='flex justify-end items-center gap-4'>
+                        <Link href={'/profile'}><li className={`flex items-center gap-1 ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}><PiUserLight /> Profile</li></Link>
                         <Avatar className='border border-gray-200'>
                             <Avatar.Image
-                            referrerPolicy='no-referrer'
+                                referrerPolicy='no-referrer'
                                 alt={user?.name}
                                 src={user?.image} />
                             <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
                         </Avatar>
+                        <Button className={'bg-cyan-500 rounded-none'} onClick={() => { handleLogout() }}>Logout</Button>
+
                     </div> : <>
                         <ul
                             className={`flex items-center gap-8 font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>

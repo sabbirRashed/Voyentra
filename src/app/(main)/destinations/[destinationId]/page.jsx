@@ -1,3 +1,4 @@
+import BookingCard from '@/components/BookingCard';
 import DeleteAlert from '@/components/DeleteAlert';
 import EditModal from '@/components/EditModal';
 import { getDestinationById } from '@/lib/data';
@@ -52,7 +53,7 @@ const DestinationDetails = async ({ params }) => {
             <Separator orientation="horizontal" className='w-full' />
 
             {/* content */}
-            <div className='flex flex-col md:flex-row justify-between mt-6 md:mt-10'>
+            <div className='flex flex-col md:flex-row justify-between gap-10 mt-6 md:mt-10'>
                 {/* details content */}
                 <div className='space-y-6 md:space-y-10'>
                     <div className='space-y-3 md:space-y-4'>
@@ -75,9 +76,10 @@ const DestinationDetails = async ({ params }) => {
                 </div>
 
                 {/* booking card */}
-                <div className='min-w-100 border-2 border-blue-500 p-4'>
-                    Booking card
+                <div>
+                    <BookingCard destination={destination}></BookingCard>
                 </div>
+
             </div>
         </div>
     );
