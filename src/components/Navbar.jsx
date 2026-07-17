@@ -4,7 +4,6 @@ import { Avatar, Button } from '@heroui/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
-import { LuUser } from 'react-icons/lu';
 import { PiUserLight } from 'react-icons/pi';
 import { toast } from 'react-toastify';
 
@@ -13,7 +12,7 @@ const Navbar = () => {
         <Link href={'/'}><li>Home</li></Link>
         <Link href={'/destinations'}><li>Destinations</li></Link>
         <Link href={'/bookings'}><li>My Bookings</li></Link>
-        <Link href={'/add-destination'}><li>Admin</li></Link>
+        <Link href={'/add-destination'}><li>Add Destination</li></Link>
     </>
 
     const authLinks = <>

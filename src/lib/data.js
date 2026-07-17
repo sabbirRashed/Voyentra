@@ -47,6 +47,12 @@ export const deleteDestination = async(id)=>{
 }
 
 // booking API
+export const getBookingInfoByUserId = async(userId) =>{
+    const res = await fetch(`http://localhost:5000/booking/${userId}`);
+    const data = res.json();
+    return data;
+}
+
 export const bookingDestination = async(bookingData) =>{
     const res = await fetch('http://localhost:5000/booking', {
         method: 'POST',

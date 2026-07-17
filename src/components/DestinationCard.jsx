@@ -7,7 +7,7 @@ import { HiOutlineLocationMarker } from 'react-icons/hi';
 
 const DestinationCard = ({ destinations }) => {
     const {_id, destinationName, country, category, price, duration, departureDate, imageUrl, description } = destinations;
-    console.log(destinationName, country);
+
     return (
         <div className='space-y-1'>
             <div className=''>

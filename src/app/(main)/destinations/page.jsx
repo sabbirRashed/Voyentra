@@ -1,7 +1,6 @@
 import DestinationCard from '@/components/DestinationCard';
 import { getDestinations } from '@/lib/data';
 import React from 'react';
-import { HiH2 } from 'react-icons/hi2';
 
 const DestinationsPage = async () => {
 
@@ -12,7 +11,7 @@ const DestinationsPage = async () => {
         <div className='min-h-[80vh] w-11/12 max-w-360 mx-auto my-30 space-y-10'>
             {/* heading */}
             <div className='space-y-4'>
-                <h2 className='font-playFair font-semibold text-2xl md:text-3xl lg:text-5xl '>Explore All Destinations</h2>
+                <h2 className='font-playFair font-semibold text-3xl md:text-4xl lg:text-5xl '>Explore All Destinations</h2>
                 <p className='text-[#6C696D] text-base md:text-xl'>Find your perfect travel experience from our curated collection</p>
             </div>
 
