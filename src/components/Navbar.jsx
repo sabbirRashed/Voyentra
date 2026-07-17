@@ -1,4 +1,6 @@
 'use client'
+import { authClient } from '@/lib/auth-client';
+import { Avatar, Button } from '@heroui/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
@@ -7,6 +9,12 @@ import { PiUserLight } from 'react-icons/pi';
 
 const Navbar = () => {
     const pathName = usePathname();
+    const {
+        data: session,
+        isPending,
+    } = authClient.useSession()
+
+    const user = session?.user;
 
     const links = <>
         <Link href={'/'}><li>Home</li></Link>
@@ -21,8 +29,8 @@ const Navbar = () => {
         <Link href={'/signUp'}><li>SignUp</li></Link>
     </>
     return (
-        <nav className={`flex justify-between px-6  py-3 bg-[#ffffff3f] absolute ${pathName === '/'? "top-4": "top-0"} left-1/2 -translate-x-1/2 w-11/12 max-w-[1600px] overflow-hidden `}>
-            <ul className= {`flex items-center gap-8 font-medium ${pathName === '/'? "text-white": "text-[#0c0b0b]"}`}>
+        <nav className={`flex justify-between px-6  py-3 bg-[#ffffff3f] absolute ${pathName === '/' ? "top-4" : "top-0"} left-1/2 -translate-x-1/2 w-11/12 max-w-[1600px] overflow-hidden `}>
+            <ul className={`flex items-center gap-8 font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
                 {links}
             </ul>
 
@@ -31,9 +39,23 @@ const Navbar = () => {
                 Voyentra
             </h2>
 
-            <ul className= {`flex items-center gap-8 font-medium ${pathName === '/'? "text-white": "text-[#0c0b0b]"}`}>
-                {authLinks}
-            </ul>
+            {
+                user ? <>
+                    <ul
+                        className={`flex items-center gap-8 font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
+                        {authLinks}
+                    </ul>
+                </> : <div className='space-x-8'>
+
+                    <Button onClick={()=>{handleLogout()}}>LogOut</Button>
+                    <Avatar>
+                        <Avatar.Image
+                            alt={user?.name}
+                            src={user?.image} />
+                        <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
+                    </Avatar>
+                </div>
+            }
         </nav>
     );
 };
