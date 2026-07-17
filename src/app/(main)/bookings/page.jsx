@@ -17,7 +17,11 @@ const MyBookings = async () => {
     })
     const user = session?.user;
 
+    if (!user) {
+        return
+    }
     const allBookings = await getBookingInfoByUserId(user?.id);
+
 
     console.log(allBookings);
 
@@ -33,7 +37,7 @@ const MyBookings = async () => {
                 }
             </div>
 
-        
+
         </div>
     );
 };
