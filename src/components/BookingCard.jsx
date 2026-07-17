@@ -5,6 +5,7 @@ import { Button, DateField, Label, Separator } from '@heroui/react';
 import React, { useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import { IoCheckmarkSharp } from 'react-icons/io5';
+import { toast } from 'react-toastify';
 
 const BookingCard = ({ destination }) => {
     const [departureDate, setDepartureDate] = useState('');
@@ -27,7 +28,12 @@ const BookingCard = ({ destination }) => {
             departureDate: new Date(departureDate),
         }
         const result = await bookingDestination(bookingData);
-        console.log('booking result:', result);
+        if (result.acknowledged) {
+            toast.success(`you booked ${destinationName}`, {
+                autoClose: 2000,
+                position: 'top-center'
+            })
+        }
 
     }
 
