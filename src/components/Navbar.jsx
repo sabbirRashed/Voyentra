@@ -6,16 +6,9 @@ import { usePathname } from 'next/navigation';
 import React from 'react';
 import { LuUser } from 'react-icons/lu';
 import { PiUserLight } from 'react-icons/pi';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
-    const pathName = usePathname();
-    const {
-        data: session,
-        isPending,
-    } = authClient.useSession()
-
-    const user = session?.user;
-
     const links = <>
         <Link href={'/'}><li>Home</li></Link>
         <Link href={'/destinations'}><li>Destinations</li></Link>
@@ -28,6 +21,26 @@ const Navbar = () => {
         <Link href={'/login'}><li>Login</li></Link>
         <Link href={'/signUp'}><li>SignUp</li></Link>
     </>
+
+    const pathName = usePathname();
+    const {
+        data: session,
+        isPending,
+    } = authClient.useSession()
+
+    const user = session?.user;
+
+    const handleLogout = async () => {
+        const { data, error } = await authClient.signOut();
+
+        if (data) {
+            toast.success('LogOut successfull')
+        }else{
+            toast.error(`Something went wrong!`)
+        }
+
+    }
+
     return (
         <nav className={`flex justify-between px-6  py-3 bg-[#ffffff3f] absolute ${pathName === '/' ? "top-4" : "top-0"} left-1/2 -translate-x-1/2 w-11/12 max-w-[1600px] overflow-hidden `}>
             <ul className={`flex items-center gap-8 font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
@@ -40,21 +53,22 @@ const Navbar = () => {
             </h2>
 
             {
-                user ? <>
-                    <ul
-                        className={`flex items-center gap-8 font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
-                        {authLinks}
-                    </ul>
-                </> : <div className='space-x-8'>
+                user ?
+                    <div className='flex justify-end gap-4'>
 
-                    <Button onClick={()=>{handleLogout()}}>LogOut</Button>
-                    <Avatar>
-                        <Avatar.Image
-                            alt={user?.name}
-                            src={user?.image} />
-                        <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
-                    </Avatar>
-                </div>
+                        <Button onClick={() => { handleLogout() }}>LogOut</Button>
+                        <Avatar>
+                            <Avatar.Image
+                                alt={user?.name}
+                                src={user?.image} />
+                            <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
+                        </Avatar>
+                    </div> : <>
+                        <ul
+                            className={`flex items-center gap-8 font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
+                            {authLinks}
+                        </ul>
+                    </>
             }
         </nav>
     );
