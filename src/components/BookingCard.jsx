@@ -2,6 +2,7 @@
 import { Button, DateField, Label, Separator } from '@heroui/react';
 import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
+import { IoCheckmarkSharp } from 'react-icons/io5';
 
 const BookingCard = ({ destination }) => {
 
@@ -35,6 +36,12 @@ const BookingCard = ({ destination }) => {
             <Button className={'w-full rounded-none bg-cyan-500 py-5'}>
                 Book Now <FaArrowRight />
             </Button>
+
+            <ul className='space-y-2 text-[#6C696D]'>
+                <li className='flex items-center gap-2'><IoCheckmarkSharp className='text-green-500' />Free cancellation up to 7 days</li>
+                <li className='flex items-center gap-2'><IoCheckmarkSharp className='text-green-500' />24/7 customer support</li>
+                <li className='flex items-center gap-2'><IoCheckmarkSharp className='text-green-500' />Travel insurance included</li>      
+            </ul>
         </div>
     );
 };
