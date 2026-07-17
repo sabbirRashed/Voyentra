@@ -67,6 +67,7 @@ const Navbar = () => {
                         <Button className={'bg-cyan-500 rounded-none'} onClick={() => { handleLogout() }}>LogOut</Button>
                         <Avatar className='border border-gray-200'>
                             <Avatar.Image
+                            referrerPolicy='no-referrer'
                                 alt={user?.name}
                                 src={user?.image} />
                             <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
