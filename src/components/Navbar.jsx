@@ -34,8 +34,10 @@ const Navbar = () => {
         const { data, error } = await authClient.signOut();
 
         if (data) {
-            toast.success('LogOut successfull')
-        }else{
+            toast.success('LogOut successfull', {
+                autoClose: 2000
+            })
+        } else {
             toast.error(`Something went wrong!`)
         }
 
@@ -43,21 +45,27 @@ const Navbar = () => {
 
     return (
         <nav className={`flex justify-between px-6  py-3 bg-[#ffffff3f] absolute ${pathName === '/' ? "top-4" : "top-0"} left-1/2 -translate-x-1/2 w-11/12 max-w-[1600px] overflow-hidden `}>
+            {/* page links */}
             <ul className={`flex items-center gap-8 font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
                 {links}
             </ul>
 
-            <div className='absolute left-1/2 top-1/2 -translate-y-1/2 bg-[#ffffff] w-40 h-15 rounded-full blur-lg rotate-x-45'></div>
-            <h2 className='font-playFair text-3xl font-bold text-[#15a1b5] z-50 tracking-wide'>
-                Voyentra
-            </h2>
+            {/* logo */}
+            <div className="relative inline-block px-6 py-">
+                <div className="absolute -inset-3 bg-white blur-xl rounded-full"></div>
 
+                <h2 className="relative z-10 font-playFair text-3xl font-bold text-cyan-500 tracking-wide">
+                    Voyentra
+                </h2>
+            </div>
+
+            {/* auth links */}
             {
                 user ?
                     <div className='flex justify-end gap-4'>
 
-                        <Button onClick={() => { handleLogout() }}>LogOut</Button>
-                        <Avatar>
+                        <Button className={'bg-cyan-500 rounded-none'} onClick={() => { handleLogout() }}>LogOut</Button>
+                        <Avatar className='border border-gray-200'>
                             <Avatar.Image
                                 alt={user?.name}
                                 src={user?.image} />
