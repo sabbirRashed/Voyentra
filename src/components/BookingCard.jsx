@@ -1,5 +1,6 @@
 'use client'
 import { authClient } from '@/lib/auth-client';
+import { bookingDestination } from '@/lib/data';
 import { Button, DateField, Label, Separator } from '@heroui/react';
 import React, { useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
@@ -13,7 +14,7 @@ const BookingCard = ({ destination }) => {
 
     const { price, _id, destinationName, imageUrl, country } = destination;
 
-    const handleBooking = async()=>{
+    const handleBooking = async () => {
         const bookingData = {
             userId: user?.id,
             userName: user?.name,
@@ -25,7 +26,8 @@ const BookingCard = ({ destination }) => {
             country,
             departureDate: new Date(departureDate),
         }
-        console.log('booking Data:',bookingData);
+        const result = await bookingDestination(bookingData);
+        console.log('booking result:', result);
 
     }
 
