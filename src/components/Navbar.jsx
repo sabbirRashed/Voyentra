@@ -22,11 +22,7 @@ const Navbar = () => {
     </>
 
     const pathName = usePathname();
-    const {
-        data: session,
-        isPending,
-    } = authClient.useSession()
-
+    const { data: session, isPending } = authClient.useSession()
     const user = session?.user;
 
     const handleLogout = async () => {

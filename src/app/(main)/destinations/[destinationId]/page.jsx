@@ -12,7 +12,6 @@ import { HiOutlineLocationMarker } from 'react-icons/hi';
 
 const DestinationDetails = async ({ params }) => {
     const { destinationId } = await params;
-    console.log(destinationId, 'destination Id');
 
     const destination = await getDestinationById(destinationId);
     const { _id, destinationName, country, category, price, duration, departureDate, imageUrl, description } = destination;
