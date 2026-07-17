@@ -7,8 +7,13 @@ import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
 
 const SignUpPage = () => {
-
     const router = useRouter();
+
+    // const {
+    //     data: session,
+    //     isPending,
+    // } = authClient.useSession()
+    // const user = session?.user;
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -27,8 +32,9 @@ const SignUpPage = () => {
         })
 
         if (data) {
-            toast.success(`SignUp successfull!`, {
+            toast.success('LogOut successfull', {
                 autoClose: 2000,
+                position: 'top-center'
             })
             router.push('/')
         }
@@ -40,11 +46,10 @@ const SignUpPage = () => {
     };
 
     const handleGoogleBtn = async () => {
-        const data = await authClient.signIn.social({
+        await authClient.signIn.social({
             provider: "google",
         })
 
-        console.log(data);
     }
 
 
@@ -139,13 +144,13 @@ const SignUpPage = () => {
                     <Separator className="flex-1" />
                 </div>
 
-                <Button onClick={ handleGoogleBtn} variant="outline" className="w-full rounded-none">
+                <Button onClick={handleGoogleBtn} variant="outline" className="w-full rounded-none">
                     <FcGoogle />
                     Sign Up With Google
                 </Button>
 
                 <div className="text-center space-x-2">
-                    <span>Already have an account?</span>
+                    <span className="text-sm text-[#6C696D]">Already have an account?</span>
                     <Link href={'/login'} className={'text-cyan-500 font-medium'}>Sign In</Link>
                 </div>
             </Card>

@@ -1,9 +1,11 @@
 'use client'
 
 import { authClient } from '@/lib/auth-client';
-import { Button, Card, Description, FieldError, Form, Input, Label, TextField } from '@heroui/react';
+import { Button, Card, Description, FieldError, Form, Input, Label, Separator, TextField } from '@heroui/react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import { FcGoogle } from 'react-icons/fc';
 import { toast } from 'react-toastify';
 
 const LoginPage = () => {
@@ -22,8 +24,9 @@ const LoginPage = () => {
         })
 
         if (data) {
-            toast.success(`Login successfull!`, {
+            toast.success('LogOut successfull', {
                 autoClose: 2000,
+                position: 'top-center'
             })
             router.push('/')
         }
@@ -36,6 +39,11 @@ const LoginPage = () => {
 
     };
 
+    const handleGoogleBtn = async () => {
+        await authClient.signIn.social({
+            provider: "google",
+        })
+    }
 
 
     return (
@@ -100,6 +108,22 @@ const LoginPage = () => {
                     </Button>
 
                 </Form>
+
+                <div className="flex justify-center items-center w-full text-[#6C696D]">
+                    <Separator className="flex-1" />
+                    <p className="whitespace-nowrap">Or continue with</p>
+                    <Separator className="flex-1" />
+                </div>
+
+                <Button onClick={handleGoogleBtn} variant="outline" className="w-full rounded-none">
+                    <FcGoogle />
+                    Sign Up With Google
+                </Button>
+
+                <div className="text-center space-x-2">
+                    <span className='text-sm text-[#6C696D]'>Don't have an account?</span>
+                    <Link href={'/signUp'} className={'text-cyan-500 font-medium'}>Sign Up</Link>
+                </div>
             </Card>
         </div>
     );

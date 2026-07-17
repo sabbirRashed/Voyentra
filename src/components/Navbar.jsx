@@ -19,7 +19,7 @@ const Navbar = () => {
     const authLinks = <>
         <Link href={'/profile'}><li className='flex items-center gap-1'><PiUserLight /> Profile</li></Link>
         <Link href={'/login'}><li>Login</li></Link>
-        <Link href={'/signUp'}><li>SignUp</li></Link>
+        <Link href={'/signUp'}><li>Sign Up</li></Link>
     </>
 
     const pathName = usePathname();
@@ -35,7 +35,8 @@ const Navbar = () => {
 
         if (data) {
             toast.success('LogOut successfull', {
-                autoClose: 2000
+                autoClose: 2000,
+                position: 'top-center'
             })
         } else {
             toast.error(`Something went wrong!`)
