@@ -1,4 +1,5 @@
 'use client'
+import { authClient } from "@/lib/auth-client";
 import { updateDestinaiton } from "@/lib/data";
 import { Button, FieldError, Input, Label, ListBox, Modal, Surface, TextArea, TextField, Select } from "@heroui/react";
 import { useRouter } from "next/navigation";
@@ -25,9 +26,15 @@ const EditModal = ({ destination }) => {
         const form = e.currentTarget;
         const formData = new FormData(form);
         const updatedData = Object.fromEntries(formData.entries());
-        const result = await updateDestinaiton(_id, updatedData);
+
+        const { data } = await authClient.token();
+        const result = await updateDestinaiton(_id, updatedData, data?.token);
 
         if (result.modifiedCount > 0) {
+            toast.success(`Successfully edit a destination`, {
+                autoClose: 2000,
+                position: 'top-center'
+            })
             router.refresh()
         }
     }
@@ -76,7 +83,7 @@ const EditModal = ({ destination }) => {
                                             {/* Category - Updated Select Component */}
                                             <div>
                                                 <Select
-                                                defaultValue={category}
+                                                    defaultValue={category}
                                                     name="category"
                                                     isRequired
                                                     className="w-full"

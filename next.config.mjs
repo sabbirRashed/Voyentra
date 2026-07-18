@@ -29,6 +29,11 @@ const nextConfig = {
         hostname: 'www.the-ski-guru.com',
         pathname: "/**"
       },
+      {
+        protocol: 'https',
+        hostname: 'encrypted-tbn0.gstatic.com',
+        pathname: "/**"
+      },
     ]
   }
 };

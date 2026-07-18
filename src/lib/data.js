@@ -1,24 +1,26 @@
-export const getDestinations = async()=>{
+export const getDestinations = async () => {
     const res = await fetch('http://localhost:5000/destinations');
     const data = await res.json();
     return data;
 }
 
-export const getDestinationById = async(id, token)=>{
+export const getDestinationById = async (id, token) => {
     const res = await fetch(`http://localhost:5000/destinations/${id}`, {
-        headers:{
+        headers: {
             authorization: `Bearer ${token}`
         }
     });
     const data = await res.json();
+    console.log(data);
     return data;
 }
 
-export const updateDestinaiton = async(id, modifiedData)=>{
+export const updateDestinaiton = async (id, modifiedData, token) => {
     const res = await fetch(`http://localhost:5000/destination/${id}`, {
         method: 'PATCH',
-        headers:{
+        headers: {
             'content-type': 'application/json',
+            authorization: `Bearer ${token}`
         },
         body: JSON.stringify(modifiedData)
     });
@@ -26,11 +28,12 @@ export const updateDestinaiton = async(id, modifiedData)=>{
     return data;
 }
 
-export const postDestination = async(destinationData)=>{
+export const postDestination = async (destinationData, token) => {
     const res = await fetch('http://localhost:5000/destination', {
         method: 'POST',
-        headers:{
-            'content-type': 'application/json'
+        headers: {
+            'content-type': 'application/json',
+            authorization: `Bearer ${token}`
         },
         body: JSON.stringify(destinationData)
     });
@@ -38,11 +41,12 @@ export const postDestination = async(destinationData)=>{
     return data;
 }
 
-export const deleteDestination = async(id)=>{
+export const deleteDestination = async (id, token) => {
     const res = await fetch(`http://localhost:5000/destination/${id}`, {
         method: "DELETE",
-        headers:{
-            "content-type": "application/json"
+        headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${token}`
         }
     })
     const data = await res.json();
@@ -50,7 +54,7 @@ export const deleteDestination = async(id)=>{
 }
 
 // booking API
-export const getBookingInfoByUserId = async(userId, token) =>{
+export const getBookingInfoByUserId = async (userId, token) => {
     const res = await fetch(`http://localhost:5000/booking/${userId}`, {
         headers: {
             authorization: `Bearer ${token}`
@@ -60,10 +64,10 @@ export const getBookingInfoByUserId = async(userId, token) =>{
     return data;
 }
 
-export const bookingDestination = async(bookingData, token) =>{
+export const bookingDestination = async (bookingData, token) => {
     const res = await fetch('http://localhost:5000/booking', {
         method: 'POST',
-        headers:{
+        headers: {
             'content-type': 'application/json',
             authorization: `Bearer ${token}`
         },
@@ -73,11 +77,12 @@ export const bookingDestination = async(bookingData, token) =>{
     return data;
 }
 
-export const deleteBookingById = async(bookingId)=>{
+export const deleteBookingById = async (bookingId, token) => {
     const res = await fetch(`http://localhost:5000/booking/${bookingId}`, {
         method: 'DELETE',
-        headers:{
+        headers: {
             'content-type': 'application/json',
+            authorization: `Bearer ${token}`
         }
     })
     const data = await res.json();

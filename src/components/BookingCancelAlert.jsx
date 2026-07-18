@@ -1,4 +1,5 @@
 'use client'
+import { authClient } from '@/lib/auth-client';
 import { deleteBookingById } from '@/lib/data';
 import { AlertDialog, Button, toastVariants } from '@heroui/react';
 import { useRouter } from 'next/navigation';
@@ -11,11 +12,14 @@ const BookingCancelAlert = ({ booking }) => {
 
     const { _id, destinationName } = booking;
 
+    
     const handleDelete = async () => {
-        const result = await deleteBookingById(_id);
+
+        const {data} = await authClient.token();
+        const result = await deleteBookingById(_id, data?.token);
 
         if (result.deletedCount > 0) {
-            toast.error('Booking Canceled.', {
+            toast.error(`Booking #${_id.slice(-4).toUpperCase()} has been canceled.`, {
                 autoClose: 2000,
                 position: 'top-center'
             })

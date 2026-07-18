@@ -1,9 +1,11 @@
 "use client"
+import { authClient } from '@/lib/auth-client';
 import { deleteDestination } from '@/lib/data';
 import { AlertDialog, Button } from '@heroui/react';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import { toast } from 'react-toastify';
 
 const DeleteAlert = ({ destination }) => {
 
@@ -13,9 +15,14 @@ const DeleteAlert = ({ destination }) => {
 
     const handleBtn = async (id) => {
 
-        const result = await deleteDestination(id);
+        const { data } = await authClient.token();
+        const result = await deleteDestination(id, data?.token);
 
         if (result.deletedCount > 0) {
+            toast.error(`Cancele a destination`, {
+                autoClose: 2000,
+                position: 'top-center'
+            })
             router.push('/destinations');
             router.refresh();
         }
@@ -47,7 +54,7 @@ const DeleteAlert = ({ destination }) => {
                                 <Button slot="close" variant="tertiary">
                                     Cancel
                                 </Button>
-                                <Button onClick={()=>{handleBtn(_id)}} slot="close" variant="danger">
+                                <Button onClick={() => { handleBtn(_id) }} slot="close" variant="danger">
                                     Delete
                                 </Button>
                             </AlertDialog.Footer>

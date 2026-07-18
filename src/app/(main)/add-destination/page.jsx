@@ -1,20 +1,28 @@
 'use client'
+import { authClient } from '@/lib/auth-client';
 import { postDestination } from '@/lib/data';
 import { FieldError, Input, Label, TextField, Select, ListBox, TextArea, Button, Card } from '@heroui/react';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const AddDestinationPage = () => {
-   const router = useRouter()
-    const onSubmit = async(e) => {
+    const router = useRouter()
+    const onSubmit = async (e) => {
         e.preventDefault();
 
         const form = e.currentTarget;
         const formData = new FormData(form);
         const destinationData = Object.fromEntries(formData.entries());
-        const result = await postDestination(destinationData);
-        
-        if(result.acknowledged){
+
+        const { data } = await authClient.token();
+        const result = await postDestination(destinationData, data?.token);
+
+        if (result.acknowledged) {
+            toast.success(`Successfully add a new destination`, {
+                autoClose: 2000,
+                position: 'top-center'
+            })
             form.reset()
             router.refresh()
         }
