@@ -22,7 +22,10 @@ const MyBookings = async () => {
         return
     }
 
-    const allBookings = await getBookingInfoByUserId(user?.id);
+    const {token} = await auth.api.getToken({
+        headers: await headers()
+    })
+    const allBookings = await getBookingInfoByUserId(user?.id, token);
 
 
     return (

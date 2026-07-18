@@ -16,6 +16,8 @@ const BookingCard = ({ destination }) => {
     const { price, _id, destinationName, imageUrl, country } = destination;
 
     const handleBooking = async () => {
+        const { data: tokenData } = await authClient.token();
+
         const bookingData = {
             userId: user?.id,
             userName: user?.name,
@@ -27,7 +29,7 @@ const BookingCard = ({ destination }) => {
             country,
             departureDate: new Date(departureDate),
         }
-        const result = await bookingDestination(bookingData);
+        const result = await bookingDestination(bookingData, tokenData?.token);
         if (result.acknowledged) {
             toast.success(`you booked ${destinationName}`, {
                 autoClose: 2000,

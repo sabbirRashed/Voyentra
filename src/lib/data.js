@@ -50,17 +50,22 @@ export const deleteDestination = async(id)=>{
 }
 
 // booking API
-export const getBookingInfoByUserId = async(userId) =>{
-    const res = await fetch(`http://localhost:5000/booking/${userId}`);
+export const getBookingInfoByUserId = async(userId, token) =>{
+    const res = await fetch(`http://localhost:5000/booking/${userId}`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    });
     const data = res.json();
     return data;
 }
 
-export const bookingDestination = async(bookingData) =>{
+export const bookingDestination = async(bookingData, token) =>{
     const res = await fetch('http://localhost:5000/booking', {
         method: 'POST',
         headers:{
             'content-type': 'application/json',
+            authorization: `Bearer ${token}`
         },
         body: JSON.stringify(bookingData)
     });

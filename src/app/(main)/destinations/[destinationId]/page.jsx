@@ -18,7 +18,6 @@ const DestinationDetails = async ({ params }) => {
     const { token } = await auth.api.getToken({
         headers: await headers(),
     })
-    console.log('token:', token);
 
     const destination = await getDestinationById(destinationId, token);
     const { _id, destinationName, country, category, price, duration, departureDate, imageUrl, description } = destination;
