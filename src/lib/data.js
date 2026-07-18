@@ -1,14 +1,13 @@
-
 export const getDestinations = async()=>{
     const res = await fetch('http://localhost:5000/destinations');
     const data = await res.json();
     return data;
 }
 
-export const getDestinationById = async(id)=>{
+export const getDestinationById = async(id, token)=>{
     const res = await fetch(`http://localhost:5000/destinations/${id}`, {
         headers:{
-            authorization: 'loged in'
+            authorization: `Bearer ${token}`
         }
     });
     const data = await res.json();

@@ -21,6 +21,7 @@ const MyBookings = async () => {
     if (!user) {
         return
     }
+
     const allBookings = await getBookingInfoByUserId(user?.id);
 
 

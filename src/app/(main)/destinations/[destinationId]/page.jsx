@@ -1,8 +1,10 @@
 import BookingCard from '@/components/BookingCard';
 import DeleteAlert from '@/components/DeleteAlert';
 import EditModal from '@/components/EditModal';
+import { auth } from '@/lib/auth';
 import { getDestinationById } from '@/lib/data';
 import { Button, Separator } from '@heroui/react';
+import { headers } from 'next/headers';
 import Image from 'next/image';
 import React from 'react';
 import { FaRegCalendarMinus } from 'react-icons/fa';
@@ -13,7 +15,12 @@ import { HiOutlineLocationMarker } from 'react-icons/hi';
 const DestinationDetails = async ({ params }) => {
     const { destinationId } = await params;
 
-    const destination = await getDestinationById(destinationId);
+    const { token } = await auth.api.getToken({
+        headers: await headers(),
+    })
+    console.log('token:', token);
+
+    const destination = await getDestinationById(destinationId, token);
     const { _id, destinationName, country, category, price, duration, departureDate, imageUrl, description } = destination;
 
 
