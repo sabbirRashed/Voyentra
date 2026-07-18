@@ -5,12 +5,14 @@ import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { IoEyeOutline } from 'react-icons/io5';
 import { LuTicketsPlane } from 'react-icons/lu';
 import BookingCancelAlert from './BookingCancelAlert';
+import Link from 'next/link';
 
 
 const MyBookingCard = ({ booking }) => {
 
     const {
         _id,
+        destinationId,
         destinationName,
         country,
         price,
@@ -46,12 +48,14 @@ const MyBookingCard = ({ booking }) => {
                 <div className='flex justify-between items-center'>
                     <span className='text-3xl xl:text-4xl font-semibold font-playFair text-cyan-500'>${price}</span>
                     <div className='flex justify-end items-center gap-4'>
-                        <BookingCancelAlert booking={booking}/>
-                        <Button
-                            className={'rounded-none bg-cyan-500  text-xs md:text-sm md:px-5'}>
-                            <IoEyeOutline className='h-4 w-4' />
-                            View
-                        </Button>
+                        <BookingCancelAlert booking={booking} />
+                        <Link href={`destinations/${destinationId}`}>
+                            <Button
+                                className={'rounded-none bg-cyan-500 hover:bg-cyan-600 transition-all duration-300  text-xs md:text-sm md:px-5'}>
+                                <IoEyeOutline className='h-4 w-4' />
+                                View
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>

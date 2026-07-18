@@ -6,7 +6,11 @@ export const getDestinations = async()=>{
 }
 
 export const getDestinationById = async(id)=>{
-    const res = await fetch(`http://localhost:5000/destinations/${id}`);
+    const res = await fetch(`http://localhost:5000/destinations/${id}`, {
+        headers:{
+            authorization: 'loged in'
+        }
+    });
     const data = await res.json();
     return data;
 }

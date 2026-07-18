@@ -24,8 +24,6 @@ const MyBookings = async () => {
     const allBookings = await getBookingInfoByUserId(user?.id);
 
 
-    console.log(allBookings);
-
     return (
         <div className='min-h-[80vh] w-11/12 max-w-360 mx-auto my-30'>
             <h2 className='font-playFair font-semibold text-3xl md:text-4xl lg:text-5xl'>My Bookings</h2>
