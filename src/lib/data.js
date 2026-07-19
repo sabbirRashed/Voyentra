@@ -15,43 +15,7 @@ export const getDestinationById = async (id, token) => {
     return data;
 }
 
-export const updateDestinaiton = async (id, modifiedData, token) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination/${id}`, {
-        method: 'PATCH',
-        headers: {
-            'content-type': 'application/json',
-            authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(modifiedData)
-    });
-    const data = await res.json();
-    return data;
-}
 
-export const postDestination = async (destinationData, token) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination`, {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-            authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(destinationData)
-    });
-    const data = await res.json();
-    return data;
-}
-
-export const deleteDestination = async (id, token) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination/${id}`, {
-        method: "DELETE",
-        headers: {
-            "content-type": "application/json",
-            authorization: `Bearer ${token}`
-        }
-    })
-    const data = await res.json();
-    return data;
-}
 
 // booking API
 export const getBookingInfoByUserId = async (userId, token) => {
@@ -60,7 +24,7 @@ export const getBookingInfoByUserId = async (userId, token) => {
             authorization: `Bearer ${token}`
         }
     });
-    const data = res.json();
+    const data = await res.json();
     return data;
 }
 

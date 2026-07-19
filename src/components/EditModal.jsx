@@ -1,6 +1,6 @@
 'use client'
+import { updateDestinaitonAction } from "@/lib/action";
 import { authClient } from "@/lib/auth-client";
-import { updateDestinaiton } from "@/lib/data";
 import { Button, FieldError, Input, Label, ListBox, Modal, Surface, TextArea, TextField, Select } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { FaRegEdit } from "react-icons/fa";
@@ -29,7 +29,7 @@ const EditModal = ({ destination }) => {
         const updatedData = Object.fromEntries(formData.entries());
 
         const { data } = await authClient.token();
-        const result = await updateDestinaiton(_id, updatedData, data?.token);
+        const result = await updateDestinaitonAction(_id, updatedData, data?.token);
 
         if (result.modifiedCount > 0) {
             toast.success(`Successfully edit a destination`, {

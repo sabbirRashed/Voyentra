@@ -1,6 +1,6 @@
 "use client"
+import { deleteDestinationAction } from '@/lib/action';
 import { authClient } from '@/lib/auth-client';
-import { deleteDestination } from '@/lib/data';
 import { AlertDialog, Button } from '@heroui/react';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -16,7 +16,7 @@ const DeleteAlert = ({ destination }) => {
     const handleBtn = async (id) => {
 
         const { data } = await authClient.token();
-        const result = await deleteDestination(id, data?.token);
+        const result = await deleteDestinationAction(id, data?.token);
 
         if (result.deletedCount > 0) {
             toast.error(`Cancele a destination`, {
