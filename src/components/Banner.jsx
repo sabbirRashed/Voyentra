@@ -1,33 +1,39 @@
 import { Button, Separator } from "@heroui/react";
+import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import { MdOutlineArrowForward } from "react-icons/md";
 
 const Banner = () => {
     return (
-        <div className="bg-[url('/assets/banner.png')] bg-cover bg-center bg-no-repeat min-h-[80vh] text-white  flex justify-between flex-col items-center  gap-5 h-150">
-            <div className="p-10 text-center flex flex-col justify-center  items-center gap-6 flex-1">
-                <h1 className="text-7xl max-w-150">
+        <div className="bg-[url('/assets/Banner.png')] bg-cover bg-center bg-no-repeat min-h-[60vh] md:min-h-[80vh] text-white  flex justify-between flex-col items-center  gap-5 h-150">
+            <div className="p-10 text-center flex flex-col justify-center  items-center gap-4 md:gap-6 flex-1">
+                <h1 className="text-3xl md:text-5xl xl:text-7xl max-w-150">
                     Discover Your Next Adventure
                 </h1>
 
-                <p className="text-2xl ">
+                <p className="text-base md:text-2xl ">
                     Explore breathtaking destinations and create unforgettable memories
                     with our curated travel experiences.
                 </p>
 
-                <div className="flex gap-5">
-                    <Button className="uppercase tracking-widest bg-cyan-500 px-5 py-6 rounded-none space-x-3">
-                        <span>Explore Now</span> <MdOutlineArrowForward />
-                    </Button>
+                <div className="flex gap-3 md:gap-5">
+                    <Link href={'/destinations'}>
+                        <Button className="uppercase tracking-wide md:tracking-widest  bg-cyan-500 px-3 md:px-5 py-4 md:py-6 rounded-none space-x-1 md:space-x-3">
+                            <span>Explore Now</span> <MdOutlineArrowForward />
+                        </Button>
+                    </Link>
 
-                    <Button className="uppercase tracking-widest px-5 py-6 bg-white/50 rounded-none">
-                        View Destination
-                    </Button>
-                    
+                    <Link href={'/destinations'}>
+                        <Button className="uppercase tracking-wide md:tracking-widest px-3
+                     md:px-5 py-4 md:py-6 bg-white/50 rounded-none">
+                            View Destination
+                        </Button>
+                    </Link>
+
                 </div>
             </div>
 
-            <div className=" bg-white/30 flex justify-between gap-5 w-full items-center">
+            <div className=" bg-white/30 flex justify-between gap-4 md:gap-5 w-full items-center">
                 <div className="px-3 py-2">
                     <h3 className="text-sm font-medium tracking-wider">Location</h3>
                     <p className="text-xs">Address, City or Zip</p>
@@ -56,7 +62,7 @@ const Banner = () => {
 
 
 
-                <div className="bg-cyan-500 h-full px-10 flex justify-center items-center cursor-pointer tracking-wider">
+                <div className="bg-cyan-500 h-full px-4 md:px-10 flex justify-center items-center cursor-pointer tracking-wider">
                     <h3>Search</h3>
                 </div>
             </div>

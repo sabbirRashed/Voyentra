@@ -24,7 +24,7 @@ const LoginPage = () => {
         })
 
         if (data) {
-            toast.success('LogOut successfull', {
+            toast.success('Log In successfull', {
                 autoClose: 2000,
                 position: 'top-center'
             })

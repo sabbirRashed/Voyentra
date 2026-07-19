@@ -4,6 +4,7 @@ import { updateDestinaiton } from "@/lib/data";
 import { Button, FieldError, Input, Label, ListBox, Modal, Surface, TextArea, TextField, Select } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { FaRegEdit } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 
 const EditModal = ({ destination }) => {
