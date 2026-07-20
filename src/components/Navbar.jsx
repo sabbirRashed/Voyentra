@@ -67,16 +67,18 @@ const Navbar = () => {
                                     src={user?.image} />
                                 <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
                             </Avatar>
-                            <Button className={'bg-cyan-500 rounded-none'} onClick={() => { handleLogout() }}>Logout</Button>
+                            <Button className={'bg-cyan-500 hover:bg-cyan-400 transition-colors duration-300 rounded-none'} onClick={() => { handleLogout() }}>Logout</Button>
 
                         </div> : <>
                             <div
                                 className={`flex items-center gap-4 font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
+
                                 <Link href={'/login'}>
-                                    <Button variant='outline' className={'rounded-none text-white hover:bg-cyan-500 transition-colors duration-300'}>Login</Button>
+                                    <Button variant='outline' className={`rounded-none hover:bg-cyan-500 transition-[background-color] duration-300 ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>Login</Button>
                                 </Link>
+
                                 <Link href={'/signUp'}>
-                                    <Button className={'rounded-none bg-cyan-500 hover:bg-cyan-400 transition-colors duration-300'}>Sign Up</Button>
+                                    <Button className={'rounded-none bg-cyan-500 hover:bg-cyan-400 transition-colors duration-300 '}>Sign Up</Button>
                                 </Link>
                             </div>
                         </>
@@ -97,7 +99,7 @@ const Navbar = () => {
                 {/* auth links */}
                 {
                     user ?
-                        <div className='flex justify-end items-center gap-3 md:gap-4'>
+                        <div className='flex justify-end items-center gap-1 md:gap-4'>
                             <Avatar size='sm' className='border border-gray-200'>
                                 <Avatar.Image
                                     referrerPolicy='no-referrer'
@@ -105,12 +107,7 @@ const Navbar = () => {
                                     src={user?.image} />
                                 <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
                             </Avatar>
-                            <Button
-                                size='sm'
-                                className={'bg-cyan-500 rounded-none'} onClick={() => { handleLogout() }}>
-                                Logout
-                            </Button>
-
+                            <MenuDrawer/>
                         </div> : <>
                             <div
                                 className={`flex items-center gap-1 font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
