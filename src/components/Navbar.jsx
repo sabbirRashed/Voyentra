@@ -3,7 +3,7 @@ import { authClient } from '@/lib/auth-client';
 import { Avatar, Button } from '@heroui/react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PiUserLight } from 'react-icons/pi';
 import { toast } from 'react-toastify';
 import MenuDrawer from './MenuDrawer';
@@ -18,8 +18,11 @@ const Navbar = () => {
 
     const router = useRouter();
     const pathName = usePathname();
+    const [isScrolled, setIsScrolled] = useState(false);
+
     const { data: session, isPending } = authClient.useSession()
     const user = session?.user;
+
 
     const handleLogout = async () => {
         const { data, error } = await authClient.signOut();
@@ -35,25 +38,38 @@ const Navbar = () => {
         router.push('/')
     }
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 400); // 80px scroll korle sticky hobe
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
 
-        // Big screen
-        <>
-          
 
+        <>
 
             {/* large screen */}
-            <nav className={`hidden md:flex justify-between w-11/12 max-w-364 pr-4 bg-white/30 absolute z-50 ${pathName === '/' ? "top-4" : "top-0"} left-1/2 -translate-x-1/2 overflow-hidden `}>
-
+            <nav
+                className={`hidden md:flex justify-between w-11/12 pr-4 left-1/2 -translate-x-1/2 overflow-hidden z-50  
+                ${isScrolled
+                        ? "fixed top-0 bg-white shadow-md "
+                        : `absolute max-w-364 ${pathName === '/' ? " top-4" : "top-0 "} bg-white/30`
+                    }`}
+            >
                 {/* logo */}
-                <div className=" bg-white pl-4 pr-10 py-3 rounded-br-full">
+                <div className="bg-white pl-4 pr-10 py-3 rounded-br-full">
                     <h2 className="font-playFair text-2xl md:text-3xl font-bold text-cyan-500 tracking-wide">
                         Voyentra
                     </h2>
                 </div>
 
                 {/* page links */}
-                <ul className={`flex items-center gap-4 md:gap-8 text-sm md:text-base font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
+                <ul className={`flex items-center gap-4 md:gap-8 text-sm md:text-base font-medium 
+                    ${isScrolled ? "text-[#0c0b0b]" : (pathName === '/' ? "text-white" : "text-[#0c0b0b]")}`}>
                     {links}
                 </ul>
 
@@ -61,66 +77,72 @@ const Navbar = () => {
                 {
                     user ?
                         <div className='flex justify-end items-center gap-3 md:gap-4'>
-                            <Link href={'/profile'}><li className={`flex items-center gap-1 ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}><PiUserLight /> Profile</li></Link>
+                            <Link href={'/profile'}>
+                                <li className={`flex items-center gap-1 
+                                    ${isScrolled ? "text-[#0c0b0b]" : (pathName === '/' ? "text-white" : "text-[#0c0b0b]")}`}>
+                                    <PiUserLight /> Profile
+                                </li>
+                            </Link>
                             <Avatar className='border border-gray-200'>
-                                <Avatar.Image
-                                    referrerPolicy='no-referrer'
-                                    alt={user?.name}
-                                    src={user?.image} />
+                                <Avatar.Image referrerPolicy='no-referrer' alt={user?.name} src={user?.image} />
                                 <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
                             </Avatar>
-                            <Button className={'bg-cyan-500 hover:bg-cyan-400 transition-colors duration-300 rounded-none'} onClick={() => { handleLogout() }}>Logout</Button>
+                            <Button className={'bg-cyan-500 hover:bg-cyan-400 transition-colors duration-300 rounded-none'} onClick={() => handleLogout()}>Logout</Button>
                         </div> : <>
-                            <div
-                                className={`flex items-center gap-4 font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
+                            <div className={`flex items-center gap-4 font-medium 
+                                ${isScrolled ? "text-[#0c0b0b]" : (pathName === '/' ? "text-white" : "text-[#0c0b0b]")}`}>
                                 <Link href={'/login'}>
-                                    <Button variant='outline' className={`rounded-none hover:bg-cyan-500 transition-[background-color] duration-300 ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>Login</Button>
+                                    <Button variant='outline' className={`rounded-none hover:bg-cyan-500 transition-[background-color] duration-300 
+                                        ${isScrolled ? "text-[#0c0b0b]" : (pathName === '/' ? "text-white" : "text-[#0c0b0b]")}`}>
+                                        Login
+                                    </Button>
                                 </Link>
                                 <Link href={'/signUp'}>
-                                    <Button className={'rounded-none bg-cyan-500 hover:bg-cyan-400 transition-colors duration-300 '}>Sign Up</Button>
+                                    <Button className={'rounded-none bg-cyan-500 hover:bg-cyan-400 transition-colors duration-300'}>Sign Up</Button>
                                 </Link>
                             </div>
                         </>
                 }
             </nav>
 
-
             {/* small screen */}
-            <nav className={`md:hidden w-11/12 max-w-364 pr-4 flex justify-between bg-white/30 absolute z-50 ${pathName === '/' ? "top-4" : "top-0"} left-1/2 -translate-x-1/2 overflow-hidden `}>
-
-                {/* logo */}
-                <div className=" bg-white pl-4 pr-10 py-3 rounded-br-full">
+            <nav
+                className={`md:hidden w-11/12 max-w-364 pr-4 flex justify-between left-1/2 -translate-x-1/2 overflow-hidden z-50 transition-all duration-300
+                ${isScrolled
+                        ? "fixed top-0 bg-white shadow-md w-full"
+                        : `absolute ${pathName === '/' ? "top-4" : "top-0"} bg-white/30`
+                    }`}
+            >
+                <div className="bg-white pl-4 pr-10 py-3 rounded-br-full">
                     <h2 className="font-playFair text-2xl md:text-3xl font-bold text-cyan-500 tracking-wide">
                         Voyentra
                     </h2>
                 </div>
 
-                {/* auth links */}
                 {
                     user ?
                         <div className='flex justify-end items-center gap-1 md:gap-4'>
                             <Avatar size='sm' className='border border-gray-200'>
-                                <Avatar.Image
-                                    referrerPolicy='no-referrer'
-                                    alt={user?.name}
-                                    src={user?.image} />
+                                <Avatar.Image referrerPolicy='no-referrer' alt={user?.name} src={user?.image} />
                                 <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
                             </Avatar>
-                            <MenuDrawer />
+                            <MenuDrawer isScrolled={isScrolled} />
                         </div> : <>
-                            <div
-                                className={`flex items-center gap-1 font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
+                            <div className={`flex items-center gap-1 font-medium 
+                                ${isScrolled ? "text-[#0c0b0b]" : (pathName === '/' ? "text-white" : "text-[#0c0b0b]")}`}>
                                 <Link href={'/login'}>
-                                    <Button size='sm' className={`rounded-none bg-cyan-500 hover:bg-cyan-400 transition-colors duration-300 `}>Login</Button>
+                                    <Button size='sm' className={`rounded-none bg-cyan-500 hover:bg-cyan-400 transition-colors duration-300`}>Login</Button>
                                 </Link>
-                                <MenuDrawer />
+                                <MenuDrawer isScrolled={isScrolled} />
                             </div>
                         </>
                 }
             </nav>
-
         </>
     );
-};
+}
+
+
+
 
 export default Navbar;

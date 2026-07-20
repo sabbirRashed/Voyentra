@@ -10,7 +10,7 @@ import { IoAddCircleOutline, IoLogOutOutline } from "react-icons/io5";
 import { LuTicketsPlane } from "react-icons/lu";
 import { toast } from "react-toastify";
 
-const MenuDrawer = () => {
+const MenuDrawer = ({isScrolled}) => {
     const pathName = usePathname();
     const isHome = pathName === '/';
     const router = useRouter();
@@ -66,8 +66,8 @@ const MenuDrawer = () => {
 
     return (
         <Drawer state={state}>
-            <Button className={`bg-transparent ${isHome ? 'text-white' : 'text-black'}`}>
-                <Bars />
+            <Button className={`bg-transparent `}>
+                <Bars className={`${isHome ? `${isScrolled? 'text-black!' : 'text-white'}` : 'text-black'}`} />
             </Button>
             <Drawer.Backdrop>
                 <Drawer.Content placement="left">
