@@ -17,7 +17,7 @@ export default function NotFound() {
                     Looks Like You&apos;re Off The Map
                 </h2>
                 <p className='text-sm md:text-base text-[#6c6c6c] max-w-md mx-auto'>
-                    The page you're looking for doesn't exist or may have been moved. Let's get you back on track.
+                    The page you&apos;re looking for doesn&apos;t exist or may have been moved. Let&apos;s get you back on track.
                 </p>
             </div>
 

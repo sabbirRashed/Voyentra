@@ -27,12 +27,12 @@ const Featured = async( {destination}) => {
                             height={400}
                             loading='eager'
                             className='w-full h-30 md:h-50'></Image>
-                        <p className='flex items-center gap-1 mt-1 text-xs text-[#6C696D] font-medium'><HiOutlineLocationMarker />Bangladesh</p>
+                        <p className='flex items-center gap-1 mt-1 text-xs text-[#6C696D] font-medium'><HiOutlineLocationMarker />{country}</p>
                     </div>
 
-                    <div className='flex justify-between'>
+                    <div className='flex justify-between gap-2'>
                         <div>
-                            <h2 className='text-2xl font-playFair font-medium'>Cox's Bazar</h2>
+                            <h2 className='text-xl font-playFair font-medium'>{destinationName}</h2>
                             <h3 className='font-medium text-sm text-[#6C696D] my-2 flex items-center gap-1'>
                                 <FaRegCalendarMinus />
                                 12/12

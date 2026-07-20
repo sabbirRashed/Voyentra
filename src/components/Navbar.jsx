@@ -15,11 +15,6 @@ const Navbar = () => {
         <Link href={'/add-destination'}><li>Add Destination</li></Link>
     </>
 
-    const authLinks = <>
-        <Link href={'/login'}><li>Login</li></Link>
-        <Link href={'/signUp'}><li>Sign Up</li></Link>
-    </>
-
     const router = useRouter();
     const pathName = usePathname();
     const { data: session, isPending } = authClient.useSession()
@@ -40,43 +35,96 @@ const Navbar = () => {
     }
 
     return (
-        <nav className={`flex justify-between px-6  py-3 bg-[#ffffff3f] absolute ${pathName === '/' ? "top-4" : "top-0"} left-1/2 -translate-x-1/2 w-11/12 max-w-[1600px] overflow-hidden `}>
-            {/* page links */}
-            <ul className={`flex items-center gap-4 md:gap-8 text-sm md:text-base font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
-                {links}
-            </ul>
 
-            {/* logo */}
-            <div className="relative inline-block px-6 py-">
-                <div className="absolute -inset-3 bg-white blur-xl rounded-full"></div>
+        // Big screen
+        <>
+            <nav className={`hidden md:flex justify-between w-11/12 max-w-364 pr-4 bg-white/30 absolute ${pathName === '/' ? "top-4" : "top-0"} left-1/2 -translate-x-1/2 overflow-hidden `}>
 
-                <h2 className="relative z-10 font-playFair text-2xl md:text-3xl font-bold text-cyan-500 tracking-wide">
-                    Voyentra
-                </h2>
-            </div>
 
-            {/* auth links */}
-            {
-                user ?
-                    <div className='flex justify-end items-center gap-3 md:gap-4'>
-                        <Link href={'/profile'}><li className={`flex items-center gap-1 ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}><PiUserLight /> Profile</li></Link>
-                        <Avatar className='border border-gray-200'>
-                            <Avatar.Image
-                                referrerPolicy='no-referrer'
-                                alt={user?.name}
-                                src={user?.image} />
-                            <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
-                        </Avatar>
-                        <Button className={'bg-cyan-500 rounded-none'} onClick={() => { handleLogout() }}>Logout</Button>
+                {/* logo */}
+                <div className=" bg-white pl-4 pr-10 py-3 rounded-br-full">
 
-                    </div> : <>
-                        <ul
-                            className={`flex items-center gap-8 font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
-                            {authLinks}
-                        </ul>
-                    </>
-            }
-        </nav>
+                    <h2 className="font-playFair text-2xl md:text-3xl font-bold text-cyan-500 tracking-wide">
+                        Voyentra
+                    </h2>
+                </div>
+
+                {/* page links */}
+                <ul className={`flex items-center gap-4 md:gap-8 text-sm md:text-base font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
+                    {links}
+                </ul>
+
+                {/* auth links */}
+                {
+                    user ?
+                        <div className='flex justify-end items-center gap-3 md:gap-4'>
+                            <Link href={'/profile'}><li className={`flex items-center gap-1 ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}><PiUserLight /> Profile</li></Link>
+                            <Avatar className='border border-gray-200'>
+                                <Avatar.Image
+                                    referrerPolicy='no-referrer'
+                                    alt={user?.name}
+                                    src={user?.image} />
+                                <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
+                            </Avatar>
+                            <Button className={'bg-cyan-500 rounded-none'} onClick={() => { handleLogout() }}>Logout</Button>
+
+                        </div> : <>
+                            <div
+                                className={`flex items-center gap-4 font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
+                                <Link href={'/login'}>
+                                    <Button variant='outline' className={'rounded-none text-white hover:bg-cyan-500 transition-colors duration-300'}>Login</Button>
+                                </Link>
+                                <Link href={'/signUp'}>
+                                    <Button className={'rounded-none bg-cyan-500 hover:bg-cyan-400 transition-colors duration-300'}>Sign Up</Button>
+                                </Link>
+                            </div>
+                        </>
+                }
+            </nav>
+
+
+            {/* small screen */}
+            <nav className={`md:hidden w-11/12 max-w-364 pr-4 flex justify-between  bg-white/30 absolute ${pathName === '/' ? "top-4" : "top-0"} left-1/2 -translate-x-1/2 overflow-hidden `}>
+
+                {/* logo */}
+                <div className=" bg-white pl-4 pr-10 py-3 rounded-br-full">
+                    <h2 className="font-playFair text-2xl md:text-3xl font-bold text-cyan-500 tracking-wide">
+                        Voyentra
+                    </h2>
+                </div>
+
+                {/* auth links */}
+                {
+                    user ?
+                        <div className='flex justify-end items-center gap-3 md:gap-4'>
+                            <Avatar size='sm' className='border border-gray-200'>
+                                <Avatar.Image
+                                    referrerPolicy='no-referrer'
+                                    alt={user?.name}
+                                    src={user?.image} />
+                                <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
+                            </Avatar>
+                            <Button
+                                size='sm'
+                                className={'bg-cyan-500 rounded-none'} onClick={() => { handleLogout() }}>
+                                Logout
+                            </Button>
+
+                        </div> : <>
+                            <div
+                                className={`flex items-center gap-3 font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
+                                <Link href={'/login'}>
+                                    <Button size='sm' variant='outline' className={'rounded-none text-white hover:bg-cyan-500 transition-colors duration-300'}>Login</Button>
+                                </Link>
+
+                                <Link href={'/signUp'}>
+                                    <Button size='sm' className={'rounded-none bg-cyan-500 hover:bg-cyan-400 transition-colors duration-300'}>Sign Up</Button>
+                                </Link>
+                            </div>
+                        </>
+                }
+            </nav>
+        </>
     );
 };
 

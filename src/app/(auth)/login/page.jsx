@@ -49,12 +49,12 @@ const LoginPage = () => {
     return (
         <div className='min-h-[80vh] w-11/12 max-w-360 mx-auto my-30'>
             <h2 className='text-center text-2xl md:text-3xl font-semibold font-playFair tracking-wide'>Welcome Back</h2>
-            <p className='text-center text-base  text-[#6C696D] mt-2'>Resume your adventure with Voyentra</p>
-            <Card className="border border-gray-200 max-w-120 mx-auto rounded-none p-10 mt-6">
+            <p className='text-center text-sm  text-[#6C696D] mt-1'>Resume your adventure with Voyentra</p>
+            <Card className="border border-gray-200 max-w-md mx-auto rounded-none p-10 mt-6">
 
                 <Form
                     onSubmit={onSubmit}
-                    className="flex w-full flex-col gap-4" >
+                    className="flex w-full flex-col gap-6" >
 
                     <TextField
                         isRequired
@@ -80,24 +80,12 @@ const LoginPage = () => {
                         minLength={8}
                         name="password"
                         type="password"
-                        validate={(value) => {
-                            if (value.length < 8) {
-                                return "Password must be at least 8 characters";
-                            }
-                            if (!/[A-Z]/.test(value)) {
-                                return "Password must contain at least one uppercase letter";
-                            }
-                            if (!/[0-9]/.test(value)) {
-                                return "Password must contain at least one number";
-                            }
-                            return null;
-                        }}
                     >
                         <Label>Password</Label>
                         <Input
                             className={"rounded-none bg-gray-50 border border-gray-200 shadow-none"}
                             placeholder="Enter your password" />
-                        <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
+                        
                         <FieldError />
                     </TextField>
 
@@ -109,9 +97,9 @@ const LoginPage = () => {
 
                 </Form>
 
-                <div className="flex justify-center items-center w-full text-[#6C696D]">
+                <div className="flex justify-center items-center gap-1 w-full text-sm text-[#6C696D]">
                     <Separator className="flex-1" />
-                    <p className="whitespace-nowrap">Or continue with</p>
+                    <p>Or continue with</p>
                     <Separator className="flex-1" />
                 </div>
 
