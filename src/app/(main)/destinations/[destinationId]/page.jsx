@@ -29,16 +29,15 @@ const DestinationDetails = async ({ params }) => {
             <div className='flex justify-between items-center'>
                 <Button
                     variant='ghost'
-                    className={'text-base md:text-xl text-[#6C696D] group hover:bg-transparent '}>
+                    className={'text-sm md:text-xl text-[#6C696D] group hover:bg-transparent '}>
                     <span
                         className=' text-[#6c696da9]  transition-transform duration-300 group-hover:-translate-x-2'>
                         <FaArrowLeft />
                     </span>
-                    <span className='md:hidden'>Back</span>
-                    <span className='hidden md:block'>Back to Destination</span>
+                    <span className=''>Back destination</span>
                 </Button>
 
-                <div className='flex justify-between items-center space-x-4 '>
+                <div className='flex justify-between items-center space-x-4'>
                     <EditModal destination={destination} />
 
                     <DeleteAlert destination={destination} />
@@ -52,7 +51,7 @@ const DestinationDetails = async ({ params }) => {
                     width={400}
                     height={400}
                     loading='eager'
-                    className='w-full h-100 md:h-150'></Image>
+                    className='w-full h-80 md:h-150'></Image>
             </div>
 
             <Separator orientation="horizontal" className='w-full' />
