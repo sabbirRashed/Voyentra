@@ -44,7 +44,7 @@ const Featured = async( {destination}) => {
                                 </Button>
                             </Link>
                         </div>
-                        <h2 className='text-2xl font-playFair font-medium'>$120<span className='text-base text-[#6C696D]'>/person</span></h2>
+                        <h2 className='text-2xl font-playFair font-medium'>${price}<span className='text-base text-[#6C696D]'>/person</span></h2>
                     </div>
                 </div>
             </div>
