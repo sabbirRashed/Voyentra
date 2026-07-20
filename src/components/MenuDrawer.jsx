@@ -1,8 +1,12 @@
-
-import { Bars, Bell, Envelope, Gear, House, Magnifier, Person,  } from "@gravity-ui/icons";
+'use client'
+import { Bars, Bell, Envelope, Gear, House, Magnifier, Person, } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
+import { usePathname } from "next/navigation";
 
-export function Navigation() {
+const MenuDrawer = () => {
+    const pathName = usePathname();
+    const isHome = pathName === '/';
+
     const navItems = [
         { icon: House, label: "Home" },
         { icon: Magnifier, label: "Search" },
@@ -13,10 +17,9 @@ export function Navigation() {
     ];
 
     return (
-        <Drawer>
-            <Button variant="secondary">
+        <Drawer className=''>
+            <Button className={`bg-transparent ${isHome? 'text-white' : 'text-black'}`} >
                 <Bars />
-                Menu
             </Button>
             <Drawer.Backdrop>
                 <Drawer.Content placement="left">
@@ -45,3 +48,5 @@ export function Navigation() {
         </Drawer>
     );
 }
+
+export default MenuDrawer

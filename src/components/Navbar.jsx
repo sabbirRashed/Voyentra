@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 import { PiUserLight } from 'react-icons/pi';
 import { toast } from 'react-toastify';
+import MenuDrawer from './MenuDrawer';
 
 const Navbar = () => {
     const links = <>
@@ -112,14 +113,14 @@ const Navbar = () => {
 
                         </div> : <>
                             <div
-                                className={`flex items-center gap-3 font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
+                                className={`flex items-center gap-1 font-medium ${pathName === '/' ? "text-white" : "text-[#0c0b0b]"}`}>
                                 <Link href={'/login'}>
-                                    <Button size='sm' variant='outline' className={'rounded-none text-white hover:bg-cyan-500 transition-colors duration-300'}>Login</Button>
+                                    <Button size='sm'  className={`rounded-none bg-cyan-500 hover:bg-cyan-400 transition-colors duration-300 `}>Login</Button>
                                 </Link>
-
-                                <Link href={'/signUp'}>
-                                    <Button size='sm' className={'rounded-none bg-cyan-500 hover:bg-cyan-400 transition-colors duration-300'}>Sign Up</Button>
-                                </Link>
+                                <MenuDrawer/>
+                                {/* <Link href={'/signUp'}>
+                                    <Button size='sm' className={''}>Sign Up</Button>
+                                </Link> */}
                             </div>
                         </>
                 }
