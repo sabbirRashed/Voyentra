@@ -14,6 +14,7 @@ export const updateDestinaitonAction = async (id, modifiedData, token) => {
     });
     const data = await res.json();
     revalidatePath('/destinations')
+    revalidatePath('/')
     return data;
 }
 
@@ -27,7 +28,8 @@ export const postDestinationAction = async (destinationData, token) => {
         body: JSON.stringify(destinationData)
     });
     const data = await res.json();
-    revalidatePath('/destinations')
+    revalidatePath('/destinations');
+    revalidatePath('/')
     return data;
 }
 
@@ -40,7 +42,8 @@ export const deleteDestinationAction = async (id, token) => {
         }
     })
     const data = await res.json();
-    revalidatePath('/destinations')
+    revalidatePath('/destinations');
+    revalidatePath('/')
     return data;
 }
 
