@@ -266,11 +266,11 @@ http://localhost:5000
 
 | Home | Destination Details |
 |------|---------------------|
-| Add Screenshot | Add Screenshot |
+|  ![Home](./screenshots/home.png)  |  ![Destination Details](./screenshots/DestinationDetails.png)  |
 
 | My Bookings | Add Destination |
 |-------------|-----------------|
-| Add Screenshot | Add Screenshot |
+|  ![My Bookings](./screenshots/myBookings.png)  |  ![Add Destinatin](./screenshots/addTravelPackage.png)  |
 
 ---
 
@@ -293,18 +293,15 @@ This project helped me gain practical experience in:
 
 Some challenges I solved during development include:
 
-- Integrating Better Auth with MongoDB
 - Managing authentication sessions securely
 - Designing reusable UI components
 - Handling protected routes
-- Preventing duplicate bookings
 - Structuring a scalable Next.js project
 
 ---
 
 # 🔮 Future Improvements
 
-- Google Authentication
 - User Profile Management
 - Destination Search & Filtering
 - Wishlist Feature
@@ -321,7 +318,7 @@ Some challenges I solved during development include:
 **Md. Sabbir Rahman**
 
 - GitHub: https://github.com/sabbirRashed
-- LinkedIn: https://www.linkedin.com/in/md-sabbir-rahman/
+- LinkedIn: https://www.linkedin.com/in/sabbirrahman
 
 ---
 
