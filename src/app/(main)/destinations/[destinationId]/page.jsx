@@ -24,7 +24,7 @@ const DestinationDetails = async ({ params }) => {
 
 
     return (
-        <div className='w-11/12 max-w-360 mx-auto my-30  min-h-[60vh]'>
+        <div className='w-11/12 max-w-360 mx-auto my-30  min-h-[80vh]'>
             {/* page header */}
             <div className='flex justify-between items-center'>
                 <Button

@@ -28,7 +28,7 @@ const AddDestinationPage = () => {
         }
     }
     return (
-        <div className='w-11/12 max-w-360 mx-auto py-30'>
+        <div className='w-11/12 max-w-360 mx-auto py-30 min-h-[80vh]'>
 
             <h2 className='text-4xl  text-[#0c0b0b]'>Add New Travel Package</h2>
 
