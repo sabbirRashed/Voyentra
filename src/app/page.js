@@ -45,6 +45,7 @@ export default async function Home() {
       <FeaturedSection destinations={featuredData} />
       <WhyChooseUs />
       <HowItWorks />
+      <CtaBanner/>
     </div>
   );
 }
