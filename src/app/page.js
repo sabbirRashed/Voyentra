@@ -1,6 +1,8 @@
 
 import Banner from "@/components/Banner";
 import FeaturedSection from "@/components/FeaturedSection";
+import CtaBanner from "@/components/Sections/CTABanner";
+import HowItWorks from "@/components/Sections/HowItWork";
 import WhyChooseUs from "@/components/Sections/WhyChooseUs";
 import { getFeaturedDestination } from "@/lib/data";
 
@@ -40,8 +42,9 @@ export default async function Home() {
         </div>
       </div> */}
 
-      <FeaturedSection destinations={featuredData}/>
-      <WhyChooseUs/>
+      <FeaturedSection destinations={featuredData} />
+      <WhyChooseUs />
+      <HowItWorks />
     </div>
   );
 }
